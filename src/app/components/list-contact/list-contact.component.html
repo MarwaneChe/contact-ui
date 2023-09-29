@@ -1,0 +1,112 @@
+<div class="wrapper">
+  <div class="parent">
+    <mat-form-field appearance="outline">
+      <mat-label>Filter en tapant</mat-label>
+      <input matInput (keyup)="filter($event)" >
+      <mat-icon matSuffix>find_in_page</mat-icon>
+      <mat-hint>Filtrage</mat-hint>
+    </mat-form-field>
+  </div>
+  <table (matSortChange)="announceSortChange($event)" [dataSource]="contacts" class="mat-elevation-z20" mat-table
+         matSort>
+
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by id">
+        id.
+      </th>
+      <td *matCellDef="let element" mat-cell> {{element.id}} </td>
+    </ng-container>
+
+    <!-- firstName Column -->
+    <ng-container matColumnDef="firstName">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by firstName">
+        Nom
+      </th>
+      <td *matCellDef="let element" mat-cell> {{element.firstName}} </td>
+    </ng-container>
+
+    <!-- lastName Column -->
+    <ng-container matColumnDef="lastName">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by lastName">
+        Prenom
+      </th>
+      <td *matCellDef="let element" mat-cell> {{element.lastName}} </td>
+    </ng-container>
+
+    <!-- mobile Column -->
+    <ng-container matColumnDef="mobile">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by mobile">
+        Portable
+      </th>
+      <td *matCellDef="let element" mat-cell> {{element.mobile}} </td>
+    </ng-container>
+
+    <!-- mail Column -->
+    <ng-container matColumnDef="mail">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by mail">
+        E-mail
+      </th>
+      <td *matCellDef="let element" mat-cell> {{element.mail}} </td>
+    </ng-container>
+
+    <!-- address Column -->
+    <ng-container matColumnDef="address">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by address">
+        Adresse
+      </th>
+      <td *matCellDef="let element" mat-cell> {{element.address}} </td>
+    </ng-container>
+
+    <!-- additionalAddress Column -->
+    <ng-container matColumnDef="additionalAddress">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by additionalAddress">
+        Complement adresse
+      </th>
+      <td *matCellDef="let element" mat-cell> {{element.additionalAddress}} </td>
+    </ng-container>
+
+    <!-- city Column -->
+    <ng-container matColumnDef="city">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by city">
+        Ville
+      </th>
+      <td *matCellDef="let element" mat-cell> {{element.city}} </td>
+    </ng-container>
+
+    <!-- postalCode Column -->
+    <ng-container matColumnDef="postalCode">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by postalCode">
+        Code postal
+      </th>
+      <td *matCellDef="let element" mat-cell> {{element.postalCode}} </td>
+    </ng-container>
+
+    <!-- dateOfBirth Column -->
+    <ng-container matColumnDef="dateOfBirth">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by dateOfBirth">
+        Date naissance
+      </th>
+      <td *matCellDef="let element" mat-cell> {{element.dateOfBirth}} </td>
+    </ng-container>
+
+    <!-- dateOfBirth Column -->
+    <ng-container matColumnDef="creationDate">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by creationDate">
+        Date creation
+      </th>
+      <td *matCellDef="let element" mat-cell> {{element.creationDate}} </td>
+    </ng-container>
+
+    <!-- updateDate Column -->
+    <ng-container matColumnDef="updateDate">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header sortActionDescription="Sort by updateDate">
+        Date mise a jour
+      </th>
+      <td *matCellDef="let element" mat-cell> {{element.updateDate}} </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+</div>
