@@ -44,11 +44,13 @@
           <input formControlName="postalCode" matInput>
         </mat-form-field>
       </div>
-
       <div class="component-class">
-        <mat-form-field appearance="outline">
+        <mat-form-field>
           <mat-label>Date naissance</mat-label>
-          <input formControlName="dateOfBirth" matInput>
+          <input [matDatepicker]="picker" formControlName="dateOfBirth" matInput>
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle [for]="picker" matIconSuffix></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <button [disabled]="contactForm.invalid" color="primary" mat-raised-button>Sauvegarder</button>
       </div>
@@ -56,11 +58,4 @@
   </div>
 </div>
 
-<!--    <mat-form-field>
-      <mat-label>Date naissance</mat-label>
-      <input matInput [matDatepicker]="picker">
-      <mat-hint>MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>-->
 

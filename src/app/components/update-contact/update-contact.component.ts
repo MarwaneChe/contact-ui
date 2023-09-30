@@ -35,6 +35,7 @@ export class UpdateContactComponent implements OnInit {
           postalCode: cont.postalCode,
           dateOfBirth: cont.dateOfBirth,
           id:cont.id,
+          creationDate:cont.creationDate
         });
       }
     )
@@ -42,6 +43,7 @@ export class UpdateContactComponent implements OnInit {
   }
 
   onSubmitContactUpDateForm() {
+    debugger
     this.contactService.updateContact(this.contactUpDateForm.value).subscribe(cont=>{
       this.router.navigate(['contacts']);
     });

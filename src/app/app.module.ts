@@ -19,6 +19,7 @@ import { HeaderComponent } from './components/header/header.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { UpdateContactComponent } from './components/update-contact/update-contact.component';
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { UpdateContactComponent } from './components/update-contact/update-conta
     HttpClientModule,
     MatButtonModule,
     MatDatepickerModule,
+    MatMomentDateModule,
     FormsModule,
     ReactiveFormsModule,
     MatToolbarModule,
