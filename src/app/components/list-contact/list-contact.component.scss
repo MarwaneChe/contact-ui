@@ -1,18 +1,26 @@
-.wrapper {
-  padding: 30px;
-}
-
 table {
   width: 100%;
 }
 
-th.mat-sort-header-sorted {
-  color: red;
-}
-
 .parent {
   display: flex;
-  justify-content: right;
-  align-items: end;
-  flex-direction: column;
+  flex-direction: row;
+  padding: 10px;
 }
+.component-class-home {
+padding: 5px;
+  margin: 5px;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
+

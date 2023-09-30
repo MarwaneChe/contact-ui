@@ -1,8 +1,9 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {LiveAnnouncer} from "@angular/cdk/a11y";
 import {MatSort, Sort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
 import {ContactService} from "../../services/contact.service";
+import {Contact} from "../../models/contact";
 
 @Component({
   selector: 'app-list-contact',
@@ -10,7 +11,7 @@ import {ContactService} from "../../services/contact.service";
   styleUrls: ['./list-contact.component.scss']
 })
 export class ListContactComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'mobile', 'mail', 'address', 'additionalAddress', 'city', 'postalCode', 'dateOfBirth', 'creationDate', 'updateDate'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'mobile', 'mail', 'address', 'additionalAddress', 'city', 'postalCode', 'dateOfBirth', 'creationDate', 'updateDate', 'suppression', 'update'];
   contacts: any;
   @ViewChild(MatSort) sort !: MatSort;
 
@@ -19,6 +20,10 @@ export class ListContactComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadContacts();
+  }
+
+  loadContacts() {
     this.contactService.contactList().subscribe(conts => {
       this.contacts = new MatTableDataSource(conts);
       this.contacts.sort = this.sort;
@@ -33,9 +38,17 @@ export class ListContactComponent implements OnInit {
     }
   }
 
-  filter(event: any) {
+  filterData(event: any) {
     this.contacts.filter = event.target.value;
   }
 
-
+  deleteContact(contact: Contact) {
+    let conf = confirm("Voulez-vous supprimer le contact : " + contact.firstName);
+    if (conf) {
+      this.contactService.deleteContact(contact.id).subscribe(() => {
+        this.loadContacts();
+      });
+    }
+    console.log(contact)
+  }
 }

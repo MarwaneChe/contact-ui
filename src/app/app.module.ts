@@ -11,11 +11,22 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {HttpClientModule} from "@angular/common/http";
+import {MatButtonModule} from "@angular/material/button";
+import { AddContactComponent } from './components/add-contact/add-contact.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HeaderComponent } from './components/header/header.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import { UpdateContactComponent } from './components/update-contact/update-contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListContactComponent
+    ListContactComponent,
+    AddContactComponent,
+    HeaderComponent,
+    UpdateContactComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +37,13 @@ import {HttpClientModule} from "@angular/common/http";
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatToolbarModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
