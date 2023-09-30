@@ -4,6 +4,7 @@ import {MatSort, Sort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
 import {ContactService} from "../../services/contact.service";
 import {Contact} from "../../models/contact";
+import {ngxCsv} from "ngx-csv/ngx-csv"
 
 @Component({
   selector: 'app-list-contact',
@@ -13,6 +14,7 @@ import {Contact} from "../../models/contact";
 export class ListContactComponent implements OnInit {
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'mobile', 'mail', 'address', 'additionalAddress', 'city', 'postalCode', 'dateOfBirth', 'creationDate', 'updateDate', 'suppression', 'update'];
   contacts: any;
+  contactsCsv:Contact[]=[];
   @ViewChild(MatSort) sort !: MatSort;
 
   constructor(private liveAnnouncer: LiveAnnouncer,
@@ -27,6 +29,7 @@ export class ListContactComponent implements OnInit {
     this.contactService.contactList().subscribe(conts => {
       this.contacts = new MatTableDataSource(conts);
       this.contacts.sort = this.sort;
+      this.contactsCsv = conts;
     });
   }
 
@@ -50,5 +53,20 @@ export class ListContactComponent implements OnInit {
       });
     }
     console.log(contact)
+  }
+
+  csvExport() {
+    let options = {
+      title: 'Contact List',
+      fieldSeparator: ';',
+      quoteStrings: '"',
+      decimalseparator: '.',
+      showLabels: false,
+      noDownload: false,
+      showTitle: false,
+      useBom: false,
+      headers: ['id', 'firstName', 'lastName', 'mobile', 'mail', 'address', 'additionalAddress', 'city', 'postalCode', 'dateOfBirth', 'creationDate', 'updateDate']
+    };
+    new ngxCsv(this.contactsCsv, "contactlist", options);
   }
 }
