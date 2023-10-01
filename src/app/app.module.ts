@@ -10,7 +10,7 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatButtonModule} from "@angular/material/button";
 import { AddContactComponent } from './components/add-contact/add-contact.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
@@ -20,6 +20,10 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { UpdateContactComponent } from './components/update-contact/update-contact.component';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
+import { LoginComponent } from './components/login/login.component';
+import {MatCardModule} from "@angular/material/card";
+import { ConnectedComponent } from './components/connected/connected.component';
+import {ContactHttpInterceptor} from "./interceptors/contact-http.interceptor";
 
 @NgModule({
   declarations: [
@@ -27,7 +31,9 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
     ListContactComponent,
     AddContactComponent,
     HeaderComponent,
-    UpdateContactComponent
+    UpdateContactComponent,
+    LoginComponent,
+    ConnectedComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,8 +52,11 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
     ReactiveFormsModule,
     MatToolbarModule,
     MatTooltipModule,
+    MatCardModule,
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS, useClass: ContactHttpInterceptor, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

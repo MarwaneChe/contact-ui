@@ -5,6 +5,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {ContactService} from "../../services/contact.service";
 import {Contact} from "../../models/contact";
 import {ngxCsv} from "ngx-csv/ngx-csv"
+import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
   selector: 'app-list-contact',
@@ -14,11 +15,12 @@ import {ngxCsv} from "ngx-csv/ngx-csv"
 export class ListContactComponent implements OnInit {
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'mobile', 'mail', 'address', 'additionalAddress', 'city', 'postalCode', 'dateOfBirth', 'creationDate', 'updateDate', 'suppression', 'update'];
   contacts: any;
-  contactsCsv:Contact[]=[];
+  contactsCsv: Contact[] = [];
   @ViewChild(MatSort) sort !: MatSort;
 
   constructor(private liveAnnouncer: LiveAnnouncer,
-              private contactService: ContactService) {
+              private contactService: ContactService,
+              private authenticationService: AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -46,11 +48,16 @@ export class ListContactComponent implements OnInit {
   }
 
   deleteContact(contact: Contact) {
-    let conf = confirm("Voulez-vous supprimer le contact : " + contact.firstName);
-    if (conf) {
-      this.contactService.deleteContact(contact.id).subscribe(() => {
-        this.loadContacts();
-      });
+    debugger
+    if (this.authenticationService.roles.toString().includes('ADMIN')) {
+      let conf = confirm("Voulez-vous supprimer le contact : " + contact.firstName);
+      if (conf) {
+        this.contactService.deleteContact(contact.id).subscribe(() => {
+          this.loadContacts();
+        });
+      }
+    } else {
+      alert("Vous n'avez pas les droits pour faire cette action")
     }
     console.log(contact)
   }

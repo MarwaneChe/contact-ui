@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-content>
+    <form (ngSubmit)="onSubmitLoginForm()" [formGroup]="loginForm">
+      <h2>Authentification</h2>
+      <mat-form-field>
+        <input formControlName="login" matInput placeholder="login" required>
+        <mat-error>
+          Merci de renseigner un login valide.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="password" matInput name="password" required type="password">
+        <mat-error>
+          Merci de renseigner un mot de passe valide.
+        </mat-error>
+      </mat-form-field>
+      <div class="component-button-class">
+        <button [disabled]="loginForm.invalid" color="primary" mat-raised-button>Connection</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+
+

@@ -9,7 +9,7 @@
         </mat-form-field>
       </div>
       <div class="component-class-home">
-        <button aria-label="add contact" color="primary" mat-fab matTooltip="Ajouter contact" routerLink="/addcontact">
+        <button aria-label="add contact" color="primary" mat-fab matTooltip="Ajouter contact" routerLink="/connect/addcontact">
           <mat-icon>note_add</mat-icon>
         </button>
       </div>
@@ -132,7 +132,7 @@
     <ng-container matColumnDef="suppression">
       <th *matHeaderCellDef mat-header-cell>
       </th>
-      <td *matCellDef="let element" mat-cell>
+      <td *matCellDef="let element" mat-cell >
         <button (click)="deleteContact(element)" color="warn" mat-mini-fab matTooltip="Supprimer contact">
           <mat-icon matSuffix>delete</mat-icon>
         </button>
@@ -142,7 +142,7 @@
       <th *matHeaderCellDef mat-header-cell>
       </th>
       <td *matCellDef="let element" mat-cell>
-        <button  color="accent" mat-mini-fab matTooltip="Mise à jour contact" [routerLink]="['/updatecontact',element.id]">
+        <button  color="accent" mat-mini-fab matTooltip="Mise à jour contact" [routerLink]="['/connect/updatecontact',element.id]">
           <mat-icon matSuffix>update</mat-icon>
         </button>
       </td>

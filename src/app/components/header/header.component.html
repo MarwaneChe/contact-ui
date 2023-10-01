@@ -4,13 +4,13 @@
       <mat-icon>menu</mat-icon>
     </button>
     <span>Gestion Contact</span>
-    <span class="example-spacer"></span>
+    <span class="separation-spacer"></span>
     <button aria-label="Example icon-button with heart icon" class="example-icon" mat-icon-button
-            routerLink="/contacts">
+            routerLink="/connect/contacts">
       <mat-icon>home</mat-icon>
     </button>
-    <button aria-label="Example icon-button with share icon" class="example-icon" mat-icon-button>
-      <mat-icon>perm_identity</mat-icon>
-    </button>
+    <span class="user-spacer">Utilisateur : {{this.authenticationService.loginConnected}}</span>
+    <button mat-raised-button color="accent" (click)="logoutUser()"><mat-icon>perm_identity</mat-icon>&nbsp;Logout</button>
+    <span class="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
   </mat-toolbar>
 </p>

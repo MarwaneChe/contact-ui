@@ -43,9 +43,8 @@ export class UpdateContactComponent implements OnInit {
   }
 
   onSubmitContactUpDateForm() {
-    debugger
     this.contactService.updateContact(this.contactUpDateForm.value).subscribe(cont=>{
-      this.router.navigate(['contacts']);
+      this.router.navigate(['connect/contacts']);
     });
   }
 }

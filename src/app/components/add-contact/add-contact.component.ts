@@ -37,9 +37,8 @@ export class AddContactComponent implements OnInit {
   }
 
   onSubmitContactForm(): void {
-    debugger
     this.contactService.addContact(this.contactForm.value).subscribe(cont=>{
-      this.router.navigate(['contacts']);
+      this.router.navigate(['connect/contacts']);
     });
   }
 
